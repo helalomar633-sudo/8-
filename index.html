@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zone Unified System | لوحة التحكم</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-5px);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans">
+
+    <div class="flex">
+        <aside class="w-64 min-h-screen bg-slate-900/50 p-6 border-l border-white/10">
+            <h1 class="text-2xl font-bold mb-10 gradient-text">ZONE UNIFIED</h1>
+            <nav class="space-y-4">
+                <a href="#" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg bg-indigo-600/20 text-indigo-400">
+                    <i class="fas fa-chart-line"></i>
+                    <span>نظرة عامة</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-white/5 transition">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>المتجر والمخزون</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-white/5 transition">
+                    <i class="fas fa-car"></i>
+                    <span>تأجير السيارات</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-white/5 transition">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>الفواتير والضرائب</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-10">
+            <header class="flex justify-between items-center mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold">مرحباً بك في نظام <span class="gradient-text">Zone</span></h2>
+                    <p class="text-slate-400 mt-2">إدارة متكاملة للتجارة، التأجير، والخدمات المالية.</p>
+                </div>
+                <div class="flex space-x-4 space-x-reverse">
+                    <div class="glass-card px-4 py-2 rounded-full text-sm flex items-center">
+                        <span class="w-2 h-2 bg-green-500 rounded-full ml-2"></span>
+                        خادم المتجر: متصل
+                    </div>
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-blue-500/20 rounded-lg text-blue-400">
+                            <i class="fas fa-boxes-stacked text-xl"></i>
+                        </div>
+                        <span class="text-xs text-green-400 font-bold">+12% اليوم</span>
+                    </div>
+                    <h3 class="text-slate-400 text-sm">مخزون المنتجات</h3>
+                    <p class="text-2xl font-bold mt-1">1,240 <span class="text-xs font-normal">قطعة</span></p>
+                    <div class="mt-4 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-blue-500 w-3/4"></div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-purple-500/20 rounded-lg text-purple-400">
+                            <i class="fas fa-calendar-check text-xl"></i>
+                        </div>
+                        <span class="text-xs text-indigo-400 font-bold">5 سيارات متاحة</span>
+                    </div>
+                    <h3 class="text-slate-400 text-sm">حجوزات السيارات</h3>
+                    <p class="text-2xl font-bold mt-1">18 <span class="text-xs font-normal">حجز نشط</span></p>
+                    <div class="mt-4 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-purple-500 w-1/2"></div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-pink-500/20 rounded-lg text-pink-400">
+                            <i class="fas fa-file-pdf text-xl"></i>
+                        </div>
+                        <span class="text-xs text-slate-400">نظام الضرائب نشط</span>
+                    </div>
+                    <h3 class="text-slate-400 text-sm">إجمالي مبيعات الشهر</h3>
+                    <p class="text-2xl font-bold mt-1">$45,200</p>
+                    <button class="mt-4 text-xs text-pink-400 border border-pink-500/30 px-3 py-1 rounded hover:bg-pink-500/10 transition">
+                        توليد تقرير PDF
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl">
+                <h3 class="text-xl font-bold mb-6">العمليات الأخيرة</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right text-slate-300">
+                        <thead>
+                            <tr class="border-b border-white/5 text-slate-500">
+                                <th class="pb-4">العملية</th>
+                                <th class="pb-4">الحالة</th>
+                                <th class="pb-4">الوقت</th>
+                                <th class="pb-4">القيمة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/5">
+                                <td class="py-4">دفع PayPal (اشتراك متكرر)</td>
+                                <td class="py-4"><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs">ناجح</span></td>
+                                <td class="py-4 text-sm">منذ 5 دقائق</td>
+                                <td class="py-4 font-mono text-blue-400">$29.99</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-4">تحديث مخزون: iPhone 15</td>
+                                <td class="py-4"><span class="bg-blue-500/20 text-blue-400 px-2 py-1 rounded text-xs">تلقائي</span></td>
+                                <td class="py-4 text-sm">منذ ساعة</td>
+                                <td class="py-4 font-mono text-blue-400">-5 وحدات</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4">حجز سيارة: Mercedes G-Class</td>
+                                <td class="py-4"><span class="bg-purple-500/20 text-purple-400 px-2 py-1 rounded text-xs">مؤكد</span></td>
+                                <td class="py-4 text-sm">منذ ساعتين</td>
+                                <td class="py-4 font-mono text-blue-400">3 أيام</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
