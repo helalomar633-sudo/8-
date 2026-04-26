@@ -140,80 +140,67 @@
     </footer>
 
     <script>
-  // دالة إنشاء كارت المنتج المحدثة لتشمل الوصف
-function createProductCard(title, description, price, img, tag) {
-    return `
-        <div class="glass rounded-3xl overflow-hidden card-hover flex flex-col h-full">
-            <div class="h-48 bg-zinc-800 relative">
-                ${tag ? `<span class="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-1 rounded-full z-10">${tag}</span>` : ''}
-                <img src="${img}" class="w-full h-full object-cover" alt="${title}">
-            </div>
-            <div class="p-4 flex flex-col flex-grow">
-                <h3 class="font-bold text-lg mb-1 text-white">${title}</h3>
-                <p class="text-zinc-400 text-xs mb-4 line-clamp-2">${description}</p>
-                <div class="flex justify-between items-center mt-auto">
-                    <span class="text-orange-500 font-bold text-md">${price} ر.س</span>
-                    <button class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
+
+
+        // وظيفة لإنشاء بيانات فريدة لكل منتج بدلاً من التكرار
+function generateUniqueData(category, index, originalItem) {
+    const variations = {
+        perfume: ["فاخر", "مركز", "نادر", "إصدار خاص", "مخفف", "فرنسي", "شرقي"],
+        food: ["عضوي", "طبيعي", "من مزارعنا", "ممتاز", "جودة عالية", "بلدي"],
+        electronics: ["الجيل الجديد", "مطوّر", "إصدار برو", "ذكي", "لاسلكي"]
+    };
+
+    const suffix = variations[category][index % variations[category].length];
+    
+    return {
+        title: `${originalItem.title} (${suffix})`,
+        // إضافة رقم الموديل أو سنة الإصدار للوصف لزيادة الواقعية
+        desc: `${originalItem.desc} - إصدار عام 2026، يتميز بمعايير جودة عالية وتصميم فريد.`,
+        // إضافة معلمة عشوائية للصورة لتبدو مختلفة قليلاً أو استخدام صور عشوائية من Unsplash بناءً على القسم
+        img: `${originalItem.img}&sig=${index}` 
+    };
 }
 
-// 1. بيانات العطور (أمثلة لـ 5 منتجات متميزة مع تكرار ذكي للبقية)
-const perfumeData = [
-    { title: "العود الملكي", desc: "مزيج ساحر من خشب العود الكمبودي والمسك الأبيض لإطلالة شرقية فاخرة.", img: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400" },
-    { title: "زهور الريف", desc: "عبير الورد الطائفي مع لمسات من الياسمين، مثالي للأوقات الصباحية.", img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400" },
-    { title: "ليالي الشرق", desc: "عطر ليلي ثقيل يجمع بين العنبر والزعفران لإحساس بالتميز.", img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400" },
-    { title: "بريز البحر", desc: "نكهة الانتعاش مع الحمضيات والملح البحري، صيفي بامتياز.", img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400" },
-    { title: "سحر الڤانيلا", desc: "مزيج دافئ من الڤانيلا والكراميل يمنحك شعوراً بالراحة والهدوء.", img: "https://images.unsplash.com/photo-1588405863914-2258b5c90ec2?w=400" }
-];
-
-// 2. بيانات المواد الغذائية
-const foodData = [
-    { title: "عسل سدر أصلي", desc: "عسل طبيعي 100% مستخلص من جبال المملكة، غني بالفوائد الصحية.", img: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400" },
-    { title: "تمور خلاص فاخرة", desc: "حبات مختارة بعناية من مزارع القصيم، رطبة وغنية بالطعم.", img: "https://images.unsplash.com/photo-1595376518170-f47269229824?w=400" },
-    { title: "قهوة عربية مختصة", desc: "تحميص متوسط مع الهيل والزعفران لتحضير القهوة السعودية الأصلية.", img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400" },
-    { title: "زيت زيتون بكر", desc: "عصرة أولى على البارد من مزارع الجوف، مثالي للسلطات والطهي الصحي.", img: "https://images.unsplash.com/photo-1474979266404-7eaacbad28c5?w=400" },
-    { title: "بهارات مشكلة", desc: "خلطة سرية من البهارات الطازجة تضفي طعماً مميزاً لكل أطباقك.", img: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=400" }
-];
-
-// 3. بيانات الإلكترونيات
-const electronicData = [
-    { title: "ساعة ذكية Ultra", desc: "تتبع نشاطك البدني، نبضات القلب، واستقبل مكالماتك بوضوح عالٍ.", img: "https://images.unsplash.com/photo-1544117518-2b462fca8a93?w=400" },
-    { title: "سماعات Pro اللاسلكية", desc: "عزل ضوضاء نشط وصوت نقي جداً مع بطارية تدوم 24 ساعة.", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" },
-    { title: "شاحن متنقل سريع", desc: "سعة 20,000 ملي أمبير يدعم الشحن السريع لجميع الهواتف.", img: "https://images.unsplash.com/photo-1609091839311-d53683a02c40?w=400" },
-    { title: "جهاز عرض منزلي (Projector)", desc: "حول غرفتك إلى سينما بدقة 4K وتوصيل لاسلكي سهل.", img: "https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=400" },
-    { title: "لوحة مفاتيح ميكانيكية", desc: "إضاءة RGB مذهلة واستجابة سريعة جداً لمحبي الألعاب.", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=400" }
-];
-
-// وظيفة لتعبئة الشبكات (Grids)
-function populateGrid(gridId, dataArray, basePrice, priceRange) {
+// تعديل وظيفة تعبئة الشبكات (Grids)
+function populateGrid(gridId, dataArray, basePrice, priceRange, categoryKey) {
     const grid = document.getElementById(gridId);
+    if (!grid) return;
+
     for (let i = 0; i < 30; i++) {
-        // نستخدم عامل المتبقي (Modulo) لتكرار البيانات الـ 5 المخصصة بشكل دوري لـ 30 منتج
-        const item = dataArray[i % dataArray.length];
-        const displayTitle = i < 5 ? item.title : `${item.title} - موديل ${i + 1}`;
+        const baseItem = dataArray[i % dataArray.length];
+        
+        // إذا كنا تجاوزنا أول 5 منتجات، نبدأ بتوليد بيانات "شبه فريدة"
+        let finalItem;
+        if (i < 5) {
+            finalItem = baseItem;
+        } else {
+            finalItem = generateUniqueData(categoryKey, i, baseItem);
+        }
+
         const randomPrice = (Math.random() * priceRange + basePrice).toFixed(2);
         
+        // تحديد التاج (Tag) بشكل أكثر ذكاءً
+        let tag = null;
+        if (i % 7 === 0) tag = 'خصم خاص';
+        else if (i % 10 === 0) tag = 'جديد';
+        else if (i % 15 === 0) tag = 'الأكثر مبيعاً';
+
         grid.innerHTML += createProductCard(
-            displayTitle,
-            item.desc,
+            finalItem.title,
+            finalItem.desc,
             randomPrice,
-            item.img,
-            i % 7 === 0 ? 'خصم خاص' : (i % 10 === 0 ? 'جديد' : null)
+            finalItem.img,
+            tag
         );
     }
 }
 
-// تنفيذ التعبئة عند تحميل الصفحة
-populateGrid('perfumes-grid', perfumeData, 150, 400);
-populateGrid('food-grid', foodData, 20, 80);
-populateGrid('electronics-grid', electronicData, 200, 2500);
-</script>
-        }
+// تنفيذ التعبئة مع تمرير مفتاح القسم (Category Key)
+document.addEventListener('DOMContentLoaded', () => {
+    populateGrid('perfumes-grid', perfumeData, 150, 400, 'perfume');
+    populateGrid('food-grid', foodData, 20, 80, 'food');
+    populateGrid('electronics-grid', electronicData, 200, 2500, 'electronics');
+});
     </script>
 </body>
 </html>
