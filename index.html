@@ -25,6 +25,11 @@
             border-color: #ea580c;
             transition: all 0.3s ease;
         }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -37,102 +42,85 @@
         <div class="hidden md:flex flex-1 mx-10">
             <div class="relative w-full">
                 <input type="text" placeholder="ابحث عن عطور، مواد غذائية، أو أزياء..." 
-                class="w-full bg-zinc-900 border border-zinc-700 rounded-full py-2 px-10 focus:outline-none focus:border-orange-500">
+                class="w-full bg-zinc-900 border border-zinc-700 rounded-full py-2 px-10 focus:outline-none focus:border-orange-500 text-right">
                 <i class="fa-solid fa-magnifying-glass absolute right-4 top-3 text-zinc-500"></i>
             </div>
         </div>
 
         <div class="flex items-center gap-6">
-            <i class="fa-solid fa-cart-shopping text-xl cursor-pointer hover:text-purple-500"></i>
+            <div class="relative">
+                <i class="fa-solid fa-cart-shopping text-xl cursor-pointer hover:text-purple-500"></i>
+                <span class="absolute -top-2 -right-2 bg-orange-600 text-[10px] rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </div>
             <i class="fa-solid fa-user text-xl cursor-pointer hover:text-purple-500"></i>
             <button class="premium-gradient px-6 py-2 rounded-full font-bold text-sm">تحميل التطبيق</button>
         </div>
     </nav>
 
-    <header class="relative h-[400px] flex items-center justify-center overflow-hidden mb-10">
+    <header class="relative h-[300px] flex items-center justify-center overflow-hidden mb-10">
         <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10"></div>
         <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1200&q=80" 
              class="absolute inset-0 w-full h-full object-cover opacity-40" alt="Banner">
         <div class="relative z-20 text-center px-4">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-4">عالمك في <span class="text-transparent bg-clip-text bg-gradient-to-l from-orange-500 to-purple-600">تطبيق واحد</span></h1>
-            <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto">أفضل المنتجات العالمية، المواد الغذائية، وأفخم العطور تصلك في دقائق.</p>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">عالمك في <span class="text-transparent bg-clip-text bg-gradient-to-l from-orange-500 to-purple-600">تطبيق واحد</span></h1>
+            <p class="text-zinc-400 text-lg max-w-2xl mx-auto">أفخم المنتجات تصلك في دقائق.</p>
         </div>
     </header>
 
     <section class="px-6 mb-12">
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
             <span class="w-2 h-8 bg-orange-600 rounded-full"></span>
-            التصنيفات
+            التصنيفات المميزة
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <div class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
-                <i class="fa-solid fa-bottle-september text-3xl mb-3 text-purple-500"></i>
+            <a href="#perfumes" class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
+                <i class="fa-solid fa-spray-can-sparkles text-3xl mb-3 text-purple-500"></i>
                 <p>عطور فاخرة</p>
-            </div>
-            <div class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
-                <i class="fa-solid fa-basket-shopping text-3xl mb-3 text-orange-500"></i>
+            </a>
+            <a href="#food" class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
+                <i class="fa-solid fa- utencils text-3xl mb-3 text-orange-500"></i>
                 <p>مواد غذائية</p>
-            </div>
-            <div class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
+            </a>
+            <a href="#fashion" class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
                 <i class="fa-solid fa-shirt text-3xl mb-3 text-blue-500"></i>
                 <p>أزياء وموضة</p>
-            </div>
-            <div class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
-                <i class="fa-solid fa-mobile-screen text-3xl mb-3 text-green-500"></i>
+            </a>
+            <a href="#electronics" class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
+                <i class="fa-solid fa-laptop-code text-3xl mb-3 text-green-500"></i>
                 <p>إلكترونيات</p>
-            </div>
-            <div class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
-                <i class="fa-solid fa-bolt text-3xl mb-3 text-yellow-500"></i>
+            </a>
+            <a href="#offers" class="glass p-6 rounded-3xl text-center card-hover cursor-pointer">
+                <i class="fa-solid fa-fire-flame-curved text-3xl mb-3 text-yellow-500"></i>
                 <p>عروض سريعة</p>
-            </div>
+            </a>
         </div>
     </section>
 
-    <section class="px-6 mb-20">
-        <div class="flex justify-between items-end mb-6">
-            <h2 class="text-2xl font-bold flex items-center gap-2">
-                <span class="w-2 h-8 bg-purple-600 rounded-full"></span>
-                عروض سوق عبدالكريم
+    <main class="px-6">
+        <section id="perfumes" class="mb-20">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-crown text-purple-500"></i> عطور فاخرة (30 منتج)
             </h2>
-            <a href="#" class="text-orange-500 hover:underline">مشاهدة الكل</a>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="glass rounded-3xl overflow-hidden card-hover">
-                <div class="h-48 bg-zinc-800 relative">
-                    <span class="absolute top-3 left-3 bg-red-600 text-[10px] px-2 py-1 rounded-full">خصم 30%</span>
-                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+            <div id="perfumes-grid" class="product-grid">
                 </div>
-                <div class="p-4">
-                    <h3 class="font-bold mb-1">عطر ملكي خاص</h3>
-                    <p class="text-zinc-500 text-sm mb-3">ثبات يدوم لـ 24 ساعة</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-orange-500 font-bold">250.00 ر.س</span>
-                        <button class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        </section>
 
-            <div class="glass rounded-3xl overflow-hidden card-hover">
-                <div class="h-48 bg-zinc-800">
-                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+        <section id="food" class="mb-20">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-basket-shopping text-orange-500"></i> مواد غذائية (30 منتج)
+            </h2>
+            <div id="food-grid" class="product-grid">
                 </div>
-                <div class="p-4">
-                    <h3 class="font-bold mb-1">سلة فواكه عضوية</h3>
-                    <p class="text-zinc-500 text-sm mb-3">توصيل سريع خلال 15 دقيقة</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-orange-500 font-bold">45.00 ر.س</span>
-                        <button class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
+        </section>
+
+        <section id="electronics" class="mb-20">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-microchip text-green-500"></i> الإلكترونيات الذكية (30 منتج)
+            </h2>
+            <div id="electronics-grid" class="product-grid">
                 </div>
-            </div>
-            
-            </div>
-    </section>
+        </section>
+    </main>
 
     <section class="px-6 mb-20">
         <div class="premium-gradient p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between">
@@ -151,5 +139,59 @@
         <p>&copy; 2026 سوق عبدالكريم. جميع الحقوق محفوظة لشركة Om Zone.</p>
     </footer>
 
+    <script>
+        function createProductCard(title, price, img, tag) {
+            return `
+                <div class="glass rounded-3xl overflow-hidden card-hover">
+                    <div class="h-40 bg-zinc-800 relative">
+                        ${tag ? `<span class="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-1 rounded-full">${tag}</span>` : ''}
+                        <img src="${img}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm mb-1">${title}</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-orange-500 font-bold text-sm">${price} ر.س</span>
+                            <button class="bg-white text-black w-8 h-8 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // توليد عطور (30 منتج)
+        const perfumesGrid = document.getElementById('perfumes-grid');
+        for (let i = 1; i <= 30; i++) {
+            perfumesGrid.innerHTML += createProductCard(
+                `عطر رويال رقم ${i}`, 
+                (Math.random() * 500 + 100).toFixed(2),
+                `https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=300&q=80`,
+                i % 5 === 0 ? 'خصم 20%' : null
+            );
+        }
+
+        // توليد مواد غذائية (30 منتج)
+        const foodGrid = document.getElementById('food-grid');
+        for (let i = 1; i <= 30; i++) {
+            foodGrid.innerHTML += createProductCard(
+                `منتج غذائي طازج ${i}`, 
+                (Math.random() * 100 + 10).toFixed(2),
+                `https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&q=80`,
+                null
+            );
+        }
+
+        // توليد إلكترونيات (30 منتج)
+        const electronicsGrid = document.getElementById('electronics-grid');
+        for (let i = 1; i <= 30; i++) {
+            electronicsGrid.innerHTML += createProductCard(
+                `جهاز ذكي إصدار ${i}`, 
+                (Math.random() * 3000 + 500).toFixed(2),
+                `https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=300&q=80`,
+                i % 3 === 0 ? 'الأكثر مبيعاً' : null
+            );
+        }
+    </script>
 </body>
 </html>
