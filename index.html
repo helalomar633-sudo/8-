@@ -140,57 +140,79 @@
     </footer>
 
     <script>
-        function createProductCard(title, price, img, tag) {
-            return `
-                <div class="glass rounded-3xl overflow-hidden card-hover">
-                    <div class="h-40 bg-zinc-800 relative">
-                        ${tag ? `<span class="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-1 rounded-full">${tag}</span>` : ''}
-                        <img src="${img}" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-sm mb-1">${title}</h3>
-                        <div class="flex justify-between items-center mt-4">
-                            <span class="text-orange-500 font-bold text-sm">${price} ر.س</span>
-                            <button class="bg-white text-black w-8 h-8 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition">
-                                <i class="fa-solid fa-plus text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
+  // دالة إنشاء كارت المنتج المحدثة لتشمل الوصف
+function createProductCard(title, description, price, img, tag) {
+    return `
+        <div class="glass rounded-3xl overflow-hidden card-hover flex flex-col h-full">
+            <div class="h-48 bg-zinc-800 relative">
+                ${tag ? `<span class="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-1 rounded-full z-10">${tag}</span>` : ''}
+                <img src="${img}" class="w-full h-full object-cover" alt="${title}">
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+                <h3 class="font-bold text-lg mb-1 text-white">${title}</h3>
+                <p class="text-zinc-400 text-xs mb-4 line-clamp-2">${description}</p>
+                <div class="flex justify-between items-center mt-auto">
+                    <span class="text-orange-500 font-bold text-md">${price} ر.س</span>
+                    <button class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
                 </div>
-            `;
-        }
+            </div>
+        </div>
+    `;
+}
 
-        // توليد عطور (30 منتج)
-        const perfumesGrid = document.getElementById('perfumes-grid');
-        for (let i = 1; i <= 30; i++) {
-            perfumesGrid.innerHTML += createProductCard(
-                `عطر رويال رقم ${i}`, 
-                (Math.random() * 500 + 100).toFixed(2),
-                `https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=300&q=80`,
-                i % 5 === 0 ? 'خصم 20%' : null
-            );
-        }
+// 1. بيانات العطور (أمثلة لـ 5 منتجات متميزة مع تكرار ذكي للبقية)
+const perfumeData = [
+    { title: "العود الملكي", desc: "مزيج ساحر من خشب العود الكمبودي والمسك الأبيض لإطلالة شرقية فاخرة.", img: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400" },
+    { title: "زهور الريف", desc: "عبير الورد الطائفي مع لمسات من الياسمين، مثالي للأوقات الصباحية.", img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400" },
+    { title: "ليالي الشرق", desc: "عطر ليلي ثقيل يجمع بين العنبر والزعفران لإحساس بالتميز.", img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400" },
+    { title: "بريز البحر", desc: "نكهة الانتعاش مع الحمضيات والملح البحري، صيفي بامتياز.", img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400" },
+    { title: "سحر الڤانيلا", desc: "مزيج دافئ من الڤانيلا والكراميل يمنحك شعوراً بالراحة والهدوء.", img: "https://images.unsplash.com/photo-1588405863914-2258b5c90ec2?w=400" }
+];
 
-        // توليد مواد غذائية (30 منتج)
-        const foodGrid = document.getElementById('food-grid');
-        for (let i = 1; i <= 30; i++) {
-            foodGrid.innerHTML += createProductCard(
-                `منتج غذائي طازج ${i}`, 
-                (Math.random() * 100 + 10).toFixed(2),
-                `https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&q=80`,
-                null
-            );
-        }
+// 2. بيانات المواد الغذائية
+const foodData = [
+    { title: "عسل سدر أصلي", desc: "عسل طبيعي 100% مستخلص من جبال المملكة، غني بالفوائد الصحية.", img: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400" },
+    { title: "تمور خلاص فاخرة", desc: "حبات مختارة بعناية من مزارع القصيم، رطبة وغنية بالطعم.", img: "https://images.unsplash.com/photo-1595376518170-f47269229824?w=400" },
+    { title: "قهوة عربية مختصة", desc: "تحميص متوسط مع الهيل والزعفران لتحضير القهوة السعودية الأصلية.", img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400" },
+    { title: "زيت زيتون بكر", desc: "عصرة أولى على البارد من مزارع الجوف، مثالي للسلطات والطهي الصحي.", img: "https://images.unsplash.com/photo-1474979266404-7eaacbad28c5?w=400" },
+    { title: "بهارات مشكلة", desc: "خلطة سرية من البهارات الطازجة تضفي طعماً مميزاً لكل أطباقك.", img: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=400" }
+];
 
-        // توليد إلكترونيات (30 منتج)
-        const electronicsGrid = document.getElementById('electronics-grid');
-        for (let i = 1; i <= 30; i++) {
-            electronicsGrid.innerHTML += createProductCard(
-                `جهاز ذكي إصدار ${i}`, 
-                (Math.random() * 3000 + 500).toFixed(2),
-                `https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=300&q=80`,
-                i % 3 === 0 ? 'الأكثر مبيعاً' : null
-            );
+// 3. بيانات الإلكترونيات
+const electronicData = [
+    { title: "ساعة ذكية Ultra", desc: "تتبع نشاطك البدني، نبضات القلب، واستقبل مكالماتك بوضوح عالٍ.", img: "https://images.unsplash.com/photo-1544117518-2b462fca8a93?w=400" },
+    { title: "سماعات Pro اللاسلكية", desc: "عزل ضوضاء نشط وصوت نقي جداً مع بطارية تدوم 24 ساعة.", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" },
+    { title: "شاحن متنقل سريع", desc: "سعة 20,000 ملي أمبير يدعم الشحن السريع لجميع الهواتف.", img: "https://images.unsplash.com/photo-1609091839311-d53683a02c40?w=400" },
+    { title: "جهاز عرض منزلي (Projector)", desc: "حول غرفتك إلى سينما بدقة 4K وتوصيل لاسلكي سهل.", img: "https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=400" },
+    { title: "لوحة مفاتيح ميكانيكية", desc: "إضاءة RGB مذهلة واستجابة سريعة جداً لمحبي الألعاب.", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=400" }
+];
+
+// وظيفة لتعبئة الشبكات (Grids)
+function populateGrid(gridId, dataArray, basePrice, priceRange) {
+    const grid = document.getElementById(gridId);
+    for (let i = 0; i < 30; i++) {
+        // نستخدم عامل المتبقي (Modulo) لتكرار البيانات الـ 5 المخصصة بشكل دوري لـ 30 منتج
+        const item = dataArray[i % dataArray.length];
+        const displayTitle = i < 5 ? item.title : `${item.title} - موديل ${i + 1}`;
+        const randomPrice = (Math.random() * priceRange + basePrice).toFixed(2);
+        
+        grid.innerHTML += createProductCard(
+            displayTitle,
+            item.desc,
+            randomPrice,
+            item.img,
+            i % 7 === 0 ? 'خصم خاص' : (i % 10 === 0 ? 'جديد' : null)
+        );
+    }
+}
+
+// تنفيذ التعبئة عند تحميل الصفحة
+populateGrid('perfumes-grid', perfumeData, 150, 400);
+populateGrid('food-grid', foodData, 20, 80);
+populateGrid('electronics-grid', electronicData, 200, 2500);
+</script>
         }
     </script>
 </body>
